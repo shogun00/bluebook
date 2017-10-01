@@ -3,12 +3,22 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd'
 
 const FormItem = Form.Item
 
-class SigninForm extends React.Component {
+class SigninContainer extends React.Component {
+  state = {
+    email: '',
+    password: ''
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values)
+        const params = {
+          email: values['email'],
+          password: values['password']
+        }
+        this.props.onSubmit(params)
       }
     })
   }
@@ -16,19 +26,19 @@ class SigninForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form
     return (
-      <Form onSubmit={this.handleSubmit} style={{ maxWidth: 300 }}>
+      <Form onSubmit={this.handleSubmit} style={{ maxWidth: 300, margin: 'auto' }}>
         <FormItem>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!'}],
+          {getFieldDecorator('email', {
+            rules: [{ required: true, message: 'Please input your email!'}],
           })(
-            <Input prefix={<Icon type='user' style={{ fontSize: 13 }} />} placeholder='Username' />
+            <Input placeholder='Email' />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your password!'}],
           })(
-            <Input prefix={<Icon type='lock' style={{ fontSize: 13 }} />} placeholder='password' />
+            <Input placeholder='password' />
           )}
         </FormItem>
         <FormItem>
@@ -49,6 +59,6 @@ class SigninForm extends React.Component {
   }
 }
 
-const Signin = Form.create()(SigninForm)
+const Signin = Form.create()(SigninContainer)
 
 export default Signin

@@ -23,7 +23,7 @@ const config = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    port: 3001
+    port: 3010
   }
 }
 
