@@ -1,10 +1,10 @@
 import React from 'react'
 import { Layout, Button } from 'antd'
-import DiveLog from './DiveLog'
+import DiveLog from '../components/DiveLog'
 
 const Url = "http://localhost:3001/divelogs"
 
-class DiveLogs extends React.Component {
+class DiveLogContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -45,4 +45,4 @@ class DiveLogs extends React.Component {
   }
 }
 
-export default DiveLogs
+export default DiveLogContainer

@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd'
 import * as authActions from '../actions/auth'
-import Profile from '../components/Profile'
-import DiveLogs from '../components/DiveLogs'
+import DiveLogContainer from '../containers/DiveLogContainer'
+import ProfileContainer from '../containers/ProfileContainer'
+import AuthContainer from './AuthContainer'
 import SigninContainer from './SigninContainer'
+import SignoutContainer from './SignoutContainer'
 
 const { Header, Sider, Content, Footer } = Layout
 
@@ -23,14 +25,20 @@ const routes = [
     icon: 'home',
     exact: true,
     label: 'Home',
-    main: DiveLogs
+    main: DiveLogContainer
   },
   {
     path: '/profile',
     icon: 'user',
     exact: true,
     label: 'Profile',
-    main: Profile
+    main: ProfileContainer
+  },
+  {
+    path: '/sign_out',
+    exact: true,
+    label: 'Signout',
+    main: SignoutContainer
   }
 ]
 
@@ -51,23 +59,23 @@ const renderHeadbar = auth => {
   )
 }
 
-const renderRoutes = ({ auth, authActions }) => {
-  const { isSignedIn } = auth
-  return isSignedIn ? (
-    <Switch>
-      { routes.map((route, i) => (
-        <Route
-          key={i}
-          exact={route.exact}
-          path={route.path}
-          component={route.main}
-        />
-      )) }
-    </Switch>
-  ) : (
-    <Route render={ () => <SigninContainer auth={auth} onSubmit={authActions.fetchUser} />} />
-  )
-}
+const renderRoutes = () => (
+  <Switch>
+    <Route exact path='/sign_in' component={SigninContainer} />
+    <AuthContainer>
+      <Switch>
+        { routes.map((route, i) => (
+          <Route
+            key={i}
+            exact={route.exact}
+            path={route.path}
+            component={route.main}
+          />
+        )) }
+      </Switch>
+    </AuthContainer>
+  </Switch>
+)
 
 class RootContainer extends React.Component {
 
@@ -80,7 +88,7 @@ class RootContainer extends React.Component {
           </Header>
           <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
             <div style={{ padding: 10, background: '#fff' }}>
-              { renderRoutes(this.props) }
+              { renderRoutes() }
             </div>
           </Content>
 
@@ -94,7 +102,7 @@ class RootContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth.auth
+  auth: state.auth
 })
 
 const mapDispatchToProps = dispatch => ({

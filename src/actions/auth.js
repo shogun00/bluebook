@@ -1,3 +1,5 @@
+import * as authModule from '../modules/auth'
+
 export const fetchUser = params => dispatch => {
   dispatch(requestFetchUser)
   const body = JSON.stringify(params)
@@ -17,6 +19,38 @@ export const fetchUser = params => dispatch => {
     data => { dispatch(signIn(data.data)) }
   ).catch(
     error => { dispatch(failSignIn(error.message)) }
+  )
+}
+
+export const signout = () =>{
+  authModule.clearAuth()
+  return {
+    type: 'SIGN_OUT'
+  }
+}
+
+export const loadUserData = () => dispatch => {
+  dispatch(requestFetchUser)
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'client': authModule.getClient(),
+      'uid': authModule.getUid(),
+      'access-token': authModule.getAccessToken()
+    }
+  }
+  fetch(`http://localhost:3000/api/auth/user`, options).then(
+    res => {
+      return res.json()
+    }
+  ).then(
+    data => { dispatch(updateUser(data)) }
+  ).catch(
+    error => {
+      console.log(error.message)
+      failLoadUser()
+    }
   )
 }
 
@@ -45,8 +79,19 @@ const handleResponse = res => {
 }
 
 const prepareSignIn = res => {
-  localStorage.setItem('uid', res.headers.get('uid'))
-  localStorage.setItem('client', res.headers.get('client'))
-  localStorage.setItem('access-token', res.headers.get('access-token'))
+  authModule.storeAuth({
+    uid: res.headers.get('uid'),
+    client: res.headers.get('client'),
+    accessToken: res.headers.get('access-token'),
+  })
   return res.json()
 }
+
+const updateUser = data => ({
+  type: 'UPDATE_USER',
+  data
+})
+
+const failLoadUser = () => ({
+  type: 'FAIL_LOAD_USER'
+})

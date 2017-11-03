@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 const config = {
   context: path.resolve(__dirname, 'src'),
@@ -23,8 +24,14 @@ const config = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    port: 3010
-  }
+    port: 3010,
+    quiet: false,
+    hot: true,
+    inline: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 module.exports = config
