@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Spin } from 'antd'
 
-import * as authActions from '../actions/auth'
+import * as userActions from '../actions/user'
 import * as authModule from '../modules/auth'
 
 class AuthContainer extends React.Component {
@@ -24,10 +24,10 @@ class AuthContainer extends React.Component {
   userWillTransfer = (props, state) => {
     if (!authModule.exsitsAuth()) {
       this.setState({ loading: false })
-      props.authActions.signout()
+      props.userActions.signout()
     } else {
-      const { isLoadedData } = props.auth
-      const { loadUserData } = props.authActions
+      const { isLoadedData } = props.user
+      const { loadUserData } = props.userActions
       if (!isLoadedData) {
         if (!state.loading) {
           this.setState({ loading: true })
@@ -42,7 +42,7 @@ class AuthContainer extends React.Component {
   }
 
   render() {
-    const { isSignedIn } = this.props.auth
+    const { isSignedIn } = this.props.user
     return (
       this.state.loading ? (
         <Spin />
@@ -58,12 +58,12 @@ class AuthContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  authActions: bindActionCreators(authActions, dispatch)
+  userActions: bindActionCreators(userActions, dispatch)
 })
 
 export default connect(

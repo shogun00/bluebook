@@ -1,0 +1,6 @@
+export const REQUEST_FETCH_USER = 'REQUEST_FETCH_USER'
+export const SIGN_IN = 'SIGN_IN'
+export const FAIL_SIGNIN = 'FAIL_SIGNIN'
+export const SIGN_OUT = 'SIGN_OUT'
+export const UPDATE_USER = 'UPDATE_USER'
+export const FAIL_LOAD_USER = 'FAIL_LOAD_USER'

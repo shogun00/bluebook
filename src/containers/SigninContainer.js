@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router-dom'
-import * as authActions from '../actions/auth'
+import * as userActions from '../actions/user'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 
 const FormItem = Form.Item
@@ -22,13 +22,13 @@ class SigninContainer extends React.Component {
           email: values['email'],
           password: values['password']
         }
-        this.props.authActions.fetchUser(params)
+        this.props.userActions.fetchUser(params)
       }
     })
   }
 
   render() {
-    const { isSignedIn } = this.props.auth
+    const { isSignedIn } = this.props.user
     const { getFieldDecorator } = this.props.form
     return (
       isSignedIn ? (
@@ -71,12 +71,12 @@ class SigninContainer extends React.Component {
 const Signin = Form.create()(SigninContainer)
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  authActions: bindActionCreators(authActions, dispatch)
+  userActions: bindActionCreators(userActions, dispatch)
 })
 
 export default connect(

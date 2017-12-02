@@ -1,3 +1,5 @@
+import * as User from '../constants/User'
+
 const initialState = {
   isPrepared: false,
   isSignedIn: false,
@@ -9,14 +11,14 @@ const initialState = {
   error: undefined
 }
 
-const auth = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
-    case 'REQUEST_FETCH_USER':
+    case User.REQUEST_FETCH_USER:
       return Object.assign({}, state, {
         isFetching: true,
         error: undefined
       })
-    case 'SIGN_IN':
+    case User.SIGN_IN:
       const user = action.data
       return Object.assign({}, state, {
         isPrepared: true,
@@ -28,16 +30,16 @@ const auth = (state = initialState, action) => {
         isLoadedData: true,
         error: undefined
       })
-    case 'FAIL_SIGNIN':
+    case User.FAIL_SIGNIN:
       return Object.assign({}, state, {
         isFetching: false,
         error: action.errors
       })
-    case 'UPDATE_USER':
+    case User.UPDATE_USER:
       return updateUser(state, action)
-    case 'FAIL_LOAD_USER':
+    case User.FAIL_LOAD_USER:
       return initialState
-    case 'SIGN_OUT':
+    case User.SIGN_OUT:
       return initialState
     default:
       return state
@@ -59,4 +61,4 @@ const updateUser = (state, action) => {
   return Object.assign({}, state, newState)
 }
 
-export default auth
+export default user

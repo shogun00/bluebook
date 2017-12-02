@@ -1,17 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
+import { clear } from './actions/alert'
 import RootContainer from './containers/RootContainer'
 
-const App = () => (
-  <RootContainer />
-)
+class App extends React.Component {
 
-// const mapStateToProps = state => ({
-//   auth: state.auth.auth
-// })
+  constructor(props) {
+    super(props)
+    const { history, dispatch } = this.props
+    history.listen((location, action) => {
+      dispatch(clear())
+    })
+  }
 
-// export default connect(
-//   mapStateToProps
-// )(App)
+  render() {
+    return (
+      <RootContainer />
+    )
+  }
+}
 
-export default App
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  clearAlert: dispatch(clear())
+})
+
+export default withRouter(connect(
+  mapStateToProps
+)(App))

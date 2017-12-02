@@ -1,9 +1,11 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd'
-import * as authActions from '../actions/auth'
+import { Alert } from 'antd'
+
+import * as userActions from '../actions/user'
 import DiveLogContainer from '../containers/DiveLogContainer'
 import ProfileContainer from '../containers/ProfileContainer'
 import AuthContainer from './AuthContainer'
@@ -42,8 +44,8 @@ const routes = [
   }
 ]
 
-const renderHeadbar = auth => {
-  const { isSignedIn } = auth
+const renderHeadbar = user => {
+  const { isSignedIn } = user
   return (
     <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']} style={{ lineHeight: '50px' }} >
       { isSignedIn && routes.map((route, index) => (
@@ -57,6 +59,16 @@ const renderHeadbar = auth => {
       }
     </Menu>
   )
+}
+
+const renderAlert = alert => {
+  if (alert.message) {
+    return (
+      <div style={{ padding: 5 }}>
+        <Alert message={alert.message} type={alert.type} showIcon />
+      </div>
+    )
+  }
 }
 
 const renderRoutes = () => (
@@ -80,33 +92,34 @@ const renderRoutes = () => (
 class RootContainer extends React.Component {
 
   render() {
+    const { alert, user } = this.props
     return (
-      <Router>
-        <Layout>
-          <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
-            { renderHeadbar(this.props.auth) }
-          </Header>
-          <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
-            <div style={{ padding: 10, background: '#fff' }}>
-              { renderRoutes() }
-            </div>
-          </Content>
+      <Layout>
+        <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
+          { renderHeadbar(user) }
+        </Header>
+        <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
+          <div style={{ padding: 10, background: '#fff' }}>
+            { renderAlert(alert) }
+            { renderRoutes() }
+          </div>
+        </Content>
 
-          <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
-            DIVE LOG Created by Ant design
-          </Footer>
-        </Layout>
-      </Router>
+        <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
+          DIVE LOG Created by Ant design
+        </Footer>
+      </Layout>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  alert: state.alert,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
-  authActions: bindActionCreators(authActions, dispatch)
+  userActions: bindActionCreators(userActions, dispatch)
 })
 
 export default connect(

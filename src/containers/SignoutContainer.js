@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { signout} from '../actions/auth'
-import { clearAuth} from '../modules/auth'
+import { signout } from '../actions/user'
+import { clearAuth } from '../modules/auth'
 
 class SignoutContainer extends React.Component {
 
@@ -18,7 +18,7 @@ class SignoutContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  user: state.user
 })
 
 export default connect(
