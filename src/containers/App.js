@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Route } from 'react-router-dom'
 
-import { clear } from './actions/alert'
-import RootContainer from './containers/RootContainer'
+import { clear } from '../actions/alert'
+import RootContainer from '../containers/RootContainer'
 
 class App extends React.Component {
 
@@ -17,7 +17,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <RootContainer />
+      <Route children={this.props.children} />
     )
   }
 }

@@ -8,7 +8,7 @@ import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
 
 import rootReducer from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import App from './app'
+import RootContainer from './containers/RootContainer'
 
 const history = createHistory()
 
@@ -21,7 +21,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <RootContainer />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('app')

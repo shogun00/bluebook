@@ -6,8 +6,9 @@ import { Layout, Menu, Icon } from 'antd'
 import { Alert } from 'antd'
 
 import * as userActions from '../actions/user'
-import DiveLogContainer from '../containers/DiveLogContainer'
-import ProfileContainer from '../containers/ProfileContainer'
+import App from './App'
+import DiveLogContainer from './DiveLogContainer'
+import ProfileContainer from './ProfileContainer'
 import AuthContainer from './AuthContainer'
 import SigninContainer from './SigninContainer'
 import SignoutContainer from './SignoutContainer'
@@ -94,21 +95,23 @@ class RootContainer extends React.Component {
   render() {
     const { alert, user } = this.props
     return (
-      <Layout>
-        <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
-          { renderHeadbar(user) }
-        </Header>
-        <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
-          <div style={{ padding: 10, background: '#fff' }}>
-            { renderAlert(alert) }
-            { renderRoutes() }
-          </div>
-        </Content>
+      <App>
+        <Layout>
+          <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
+            { renderHeadbar(user) }
+          </Header>
+          <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
+            <div style={{ padding: 10, background: '#fff' }}>
+              { renderAlert(alert) }
+              { renderRoutes() }
+            </div>
+          </Content>
 
-        <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
-          DIVE LOG Created by Ant design
-        </Footer>
-      </Layout>
+          <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
+            DIVE LOG Created by Ant design
+          </Footer>
+        </Layout>
+      </App>
     )
   }
 }
