@@ -2,27 +2,41 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Spin } from 'antd'
+
 import * as authActions from '../actions/auth'
 import * as authModule from '../modules/auth'
 
 class AuthContainer extends React.Component {
 
+  state = {
+    loading: true
+  }
+
   componentWillMount() {
-    this.userWillTransfer(this.props)
+    this.userWillTransfer(this.props, this.state)
   }
 
-  componentWillUpdate(nextProps) {
-    this.userWillTransfer(nextProps)
+  componentWillUpdate(nextProps, nextState) {
+    this.userWillTransfer(nextProps, nextState)
   }
 
-  userWillTransfer = props => {
+  userWillTransfer = (props, state) => {
     if (!authModule.exsitsAuth()) {
+      this.setState({ loading: false })
       props.authActions.signout()
     } else {
       const { isLoadedData } = props.auth
       const { loadUserData } = props.authActions
       if (!isLoadedData) {
+        if (!state.loading) {
+          this.setState({ loading: true })
+        }
         loadUserData()
+      } else {
+        if (state.loading) {
+          this.setState({ loading: false})
+        }
       }
     }
   }
@@ -30,10 +44,14 @@ class AuthContainer extends React.Component {
   render() {
     const { isSignedIn } = this.props.auth
     return (
-      isSignedIn ? (
-        <Route children={this.props.children} />
+      this.state.loading ? (
+        <Spin />
       ) : (
-        <Redirect to='/sign_in' />
+        isSignedIn ? (
+          <Route children={this.props.children} />
+        ) : (
+          <Redirect to='/sign_in' />
+        )
       )
     )
   }
