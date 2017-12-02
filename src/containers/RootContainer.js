@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd'
 import { Alert } from 'antd'
 
@@ -96,21 +96,23 @@ class RootContainer extends React.Component {
     const { alert, user } = this.props
     return (
       <App>
-        <Layout>
-          <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
-            { renderHeadbar(user) }
-          </Header>
-          <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
-            <div style={{ padding: 10, background: '#fff' }}>
-              { renderAlert(alert) }
-              { renderRoutes() }
-            </div>
-          </Content>
+        <Router>
+          <Layout>
+            <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
+              { renderHeadbar(user) }
+            </Header>
+            <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
+              <div style={{ padding: 10, background: '#fff' }}>
+                { renderAlert(alert) }
+                { renderRoutes() }
+              </div>
+            </Content>
 
-          <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
-            DIVE LOG Created by Ant design
-          </Footer>
-        </Layout>
+            <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
+              DIVE LOG Created by Ant design
+            </Footer>
+          </Layout>
+        </Router>
       </App>
     )
   }
