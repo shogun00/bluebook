@@ -1,13 +1,13 @@
 import * as Alert from '../constants/Alert'
 
-export const success = message => ({
+export const success = messages => ({
   type: Alert.SUCCESS,
-  message
+  messages
 })
 
-export const error = message => ({
+export const error = messages => ({
   type: Alert.ERROR,
-  message
+  messages
 })
 
 export const clear = () => ({

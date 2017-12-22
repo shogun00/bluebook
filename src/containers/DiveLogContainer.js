@@ -6,23 +6,24 @@ const Url = "http://localhost:3001/divelogs"
 
 class DiveLogContainer extends React.Component {
   constructor(props) {
+    console.log('DIVELOG CONTAINER')
     super(props)
     this.state = {
       divelogs: []
     }
   }
 
-  componentDidMount = () => {
-    fetch(Url, {
-      'accept': 'application/json'
-    }).then((response) => {
-      return response.json()
-    }).then(data => {
-      this.setState({divelogs: data})
-    }).then(
-      console.log('Fetch error')
-    )
-  }
+  // componentDidMount = () => {
+  //   fetch(Url, {
+  //     'accept': 'application/json'
+  //   }).then((response) => {
+  //     return response.json()
+  //   }).then(data => {
+  //     this.setState({divelogs: data})
+  //   }).then(
+  //     console.log('Fetch error')
+  //   )
+  // }
 
   render() {
     if (this.state.divelogs.length > 0) {

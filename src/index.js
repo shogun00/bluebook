@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 
 import rootReducer from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import RootContainer from './containers/RootContainer'
+import App from './containers/App'
 
 const history = createHistory()
 
@@ -21,7 +21,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <RootContainer />
+      <App />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('app')

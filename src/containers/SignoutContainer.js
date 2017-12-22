@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { signout } from '../actions/user'
-import { clearAuth } from '../modules/auth'
+import { requestSignout } from '../actions/user'
 
 class SignoutContainer extends React.Component {
 
   componentWillMount() {
-    clearAuth()
+    this.props.requestSignout()
   }
 
   render() {
@@ -17,10 +16,13 @@ class SignoutContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user
-})
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = {
+  requestSignout
+}
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(SignoutContainer)

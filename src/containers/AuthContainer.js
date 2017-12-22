@@ -22,7 +22,7 @@ class AuthContainer extends React.Component {
   }
 
   userWillTransfer = (props, state) => {
-    if (!authModule.exsitsAuth()) {
+    if (!authModule.existsAuth()) {
       this.setState({ loading: false })
       props.userActions.signout()
     } else {

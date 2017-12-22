@@ -4,59 +4,54 @@ import * as User from '../constants/User'
 import * as authModule from '../modules/auth'
 import * as alertActions from './alert'
 
-export const fetchUser = params => dispatch => {
-  dispatch(requestFetchUser)
-  console.log(params)
+export const requestSignin = params => dispatch => {
   client.post('/auth/sign_in', params).then(
     response => {
       const { headers, data } = response
-      const user = data
       storeAuth(headers)
-      dispatch(signIn(user))
+      dispatch(signin(data))
     }
   ).catch(
     error => {
-      console.log(error)
       console.log(error.message)
-      dispatch(failSignIn('fail signin'))
-      dispatch(alertActions.error('fail signin'))
+      dispatch(failSignin())
+      const messages = ['fail signin']
+      dispatch(alertActions.error(messages))
     }
   )
 }
 
-export const signout = () =>{
+export const requestSignout = () =>{
   authModule.clearAuth()
   return {
     type: User.SIGN_OUT
   }
 }
 
-export const loadUserData = () => dispatch => {
-  dispatch(requestFetchUser)
-  client.get('/api/auth/user').then(
-    response => {
-      dispatch(updateUser(response.data))
-    }
-  ).catch(
-    error => {
-      console.log(error.message)
-      dispatch(failLoadUser())
-    }
-  )
+export const requestFetch = () => dispatch => {
+  if (authModule.existsAuth()) {
+    client.get('/api/auth/user').then(
+      response => {
+        dispatch(fetch(response.data))
+      }
+    ).catch(
+      error => {
+        console.log(error.message)
+        dispatch(failFetch())
+      }
+    )
+  } else {
+    dispatch(failFetch())
+  }
 }
 
-const requestFetchUser = () => ({
-  type: User.REQUEST_FETCH_USER
-})
-
-const signIn = data => ({
+const signin = data => ({
   type: User.SIGN_IN,
   data
 })
 
-const failSignIn = errors => ({
-  type: User.FAIL_SIGNIN,
-  errors
+const failSignin = () => ({
+  type: User.FAIL_SIGNIN
 })
 
 const storeAuth = params => {
@@ -67,11 +62,11 @@ const storeAuth = params => {
   })
 }
 
-const updateUser = data => ({
-  type: User.UPDATE_USER,
+const fetch = data => ({
+  type: User.FETCH,
   data
 })
 
-const failLoadUser = () => ({
-  type: User.FAIL_LOAD_USER
+const failFetch = () => ({
+  type: User.FAIL_FETCH
 })

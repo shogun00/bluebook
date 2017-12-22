@@ -10,7 +10,7 @@ export const getAccessToken = () => {
   return localStorage.getItem('access-token')
 }
 
-export const exsitsAuth = () => {
+export const existsAuth = () => {
   return getClient() && getUid() && getAccessToken()
 }
 

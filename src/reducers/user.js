@@ -3,62 +3,51 @@ import * as User from '../constants/User'
 const initialState = {
   isPrepared: false,
   isSignedIn: false,
+  isFetched: false,
   id: undefined,
   name: undefined,
-  email: undefined,
-  isFetching: false,
-  isLoadedData: false,
-  error: undefined
 }
 
-const user = (state = initialState, action) => {
-  switch (action.type) {
-    case User.REQUEST_FETCH_USER:
-      return Object.assign({}, state, {
-        isFetching: true,
-        error: undefined
-      })
-    case User.SIGN_IN:
-      const user = action.data
-      return Object.assign({}, state, {
-        isPrepared: true,
-        isSignedIn: true,
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        isFetching: false,
-        isLoadedData: true,
-        error: undefined
-      })
-    case User.FAIL_SIGNIN:
-      return Object.assign({}, state, {
-        isFetching: false,
-        error: action.errors
-      })
-    case User.UPDATE_USER:
-      return updateUser(state, action)
-    case User.FAIL_LOAD_USER:
-      return initialState
-    case User.SIGN_OUT:
-      return initialState
-    default:
-      return state
-  }
-}
-
-const updateUser = (state, action) => {
+const signin = (state, action) => {
   const user = action.data
   const newState = {
     isPrepared: true,
     isSignedIn: true,
+    isFetched: true,
     id: user.id,
     name: user.name,
-    email: user.email,
-    isFetching: false,
-    isLoadedData: true,
-    error: undefined
   }
   return Object.assign({}, state, newState)
+}
+
+const signout = state => {
+  const newState = {
+    isPrepared: true,
+    isSignedIn: false,
+    isFetched: false,
+    id: undefined,
+    name: undefined
+  }
+  return Object.assign({}, state, newState)
+}
+
+const user = (state = initialState, action) => {
+  switch (action.type) {
+    case User.SIGN_IN:
+      console.log('LOGED IN')
+      return signin(state, action)
+    case User.FAIL_SIGNIN:
+      console.log('REDUCER_FAIL_SIGNIN')
+      return signout()
+    case User.FETCH:
+      return signin(state, action)
+    case User.FAIL_FETCH:
+      return signout()
+    case User.SIGN_OUT:
+      return signout()
+    default:
+      return state
+  }
 }
 
 export default user
