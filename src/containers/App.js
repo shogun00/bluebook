@@ -1,4 +1,5 @@
 import React from 'react'
+import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
 import { withRouter, Route, Link, Switch } from 'react-router-dom'
 import { Layout, Menu, Icon, Alert, Spin } from 'antd'
@@ -56,7 +57,6 @@ const renderHeadbar = user => {
 }
 
 const renderAlert = alert => {
-  console.log(alert.messages)
   if (alert.messages && alert.messages.length > 0) {
     return (
       <div style={{ padding: 5 }}>
@@ -68,50 +68,36 @@ const renderAlert = alert => {
   }
 }
 
-class App extends React.Component {
+const App = props => {
+  const { alert, user } = props
+  return (
+    user.isPrepared ? (
+      <Layout>
+        <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
+          { renderHeadbar(user) }
+        </Header>
+        <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
+          <div style={{ padding: 10, background: '#fff' }}>
+            { renderAlert(alert) }
 
-  componentWillMount() {
-    console.log('before APP mount')
-    this.props.requestFetch()
-  }
+            <Switch>
+              <PrivateRoute exact path='/' component={DiveLogContainer} />
+              <PrivateRoute exact path='/profile' component={ProfileContainer} />
+              <PrivateRoute path='/sign_out' component={SignoutContainer} />
+              <Route path='/sign_in' component={SigninContainer} />
+            </Switch>
 
-  componentWillUpdate(nextProps, nextState) {
-    nextProps.history.listen((location, action) => {
-      nextProps.clear()
-    })
-  }
+          </div>
+        </Content>
 
-  render() {
-    const { alert, user } = this.props
-    return (
-      user.isPrepared ? (
-        <Layout>
-          <Header className="header" style={{ height: 50, background: '#fff', padding: '0 120px' }} >
-            { renderHeadbar(user) }
-          </Header>
-          <Content style={{ background: '#87ceeb', padding: '10px 120px', margin: 0, minHeight: '100%' }}>
-            <div style={{ padding: 10, background: '#fff' }}>
-              { renderAlert(alert) }
-
-              <Switch>
-                <PrivateRoute exact path='/' component={DiveLogContainer} />
-                <PrivateRoute exact path='/profile' component={ProfileContainer} />
-                <PrivateRoute path='/sign_out' component={SignoutContainer} />
-                <Route path='/sign_in' component={SigninContainer} />
-              </Switch>
-
-            </div>
-          </Content>
-
-          <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
-            DIVE LOG Created by Ant design
-          </Footer>
-        </Layout>
-      ) : (
-        <Spin />
-      )
+        <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
+          DIVE LOG Created by Ant design
+        </Footer>
+      </Layout>
+    ) : (
+      <Spin />
     )
-  }
+  )
 }
 
 const mapStateToProps = state => ({
@@ -124,7 +110,23 @@ const mapDispatchToProps = {
   requestFetch
 }
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App))
+const enhance = compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  lifecycle({
+    componentWillMount() {
+      console.log('before APP mount')
+      this.props.requestFetch()
+    } ,
+    componentWillUpdate(nextProps, nextState) {
+      console.log('updated APP Container')
+      nextProps.history.listen((location, action) => {
+        nextProps.clear()
+      })
+    }
+  })
+)
+
+export default withRouter(enhance(App))
