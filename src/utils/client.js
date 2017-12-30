@@ -9,23 +9,26 @@ const client = axios.create({
     'X-requested-with': 'XMLHttpRequest',
   },
   timeout: 10000,
-  'responseType': 'json'
+  responseType: 'json',
 })
 
-client.interceptors.request.use(config => {
-  let newConfig = Object.assign({}, config)
-  const authClient = auth.getClient()
-  const authUid = auth.getUid()
-  const authAccessToken = auth.getAccessToken()
+client.interceptors.request.use(
+  config => {
+    const newConfig = Object.assign({}, config)
+    const authClient = auth.getClient()
+    const authUid = auth.getUid()
+    const authAccessToken = auth.getAccessToken()
 
-  if (authClient && authUid && authAccessToken) {
-    newConfig.headers['client'] = authClient
-    newConfig.headers['uid'] = authUid
-    newConfig.headers['access-token'] = authAccessToken
+    if (authClient && authUid && authAccessToken) {
+      newConfig.headers['client'] = authClient
+      newConfig.headers['uid'] = authUid
+      newConfig.headers['access-token'] = authAccessToken
+    }
+    return newConfig
+  },
+  error => {
+    return Promise.reject(error)
   }
-  return newConfig
-}, error => {
-  return Promise.reject(error)
-})
+)
 
 export default client

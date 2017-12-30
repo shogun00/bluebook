@@ -1,5 +1,5 @@
 const initialState = {
-  logs: []
+  logs: [],
 }
 
 const divelogs = (state = initialState, action) => {

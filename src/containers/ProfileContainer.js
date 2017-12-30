@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Layout } from 'antd'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -18,10 +17,7 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
 })
 
-export default connect(
-  mapStateToProps
-)(ProfileContainer)
-
+export default connect(mapStateToProps)(ProfileContainer)

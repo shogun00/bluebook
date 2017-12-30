@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   user,
   divelog,
   alert,
-  router: routerReducer
+  router: routerReducer,
 })
 
 export default rootReducer

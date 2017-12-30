@@ -1,5 +1,5 @@
 const configuration = () => {
-  let settings = {}
+  const settings = {}
   settings.backendURL = 'http://localhost:3000'
   return settings
 }

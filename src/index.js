@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 
 import rootReducer from './reducers'

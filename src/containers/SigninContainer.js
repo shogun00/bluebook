@@ -6,25 +6,18 @@ import { requestSignin } from '../actions/user'
 
 import Signin from '../components/Signin'
 
-const SigninContainer = props => (
-  <Signin {...props} />
-)
+const SigninContainer = props => <Signin {...props} />
 
 const SigninForm = Form.create()(SigninContainer)
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
 })
 
 const mapDispatchToProps = {
-  requestSignin
+  requestSignin,
 }
 
-const enhance = compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)
+const enhance = compose(connect(mapStateToProps, mapDispatchToProps))
 
 export default enhance(SigninForm)

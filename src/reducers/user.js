@@ -26,7 +26,7 @@ const signout = state => {
     isSignedIn: false,
     isFetched: false,
     id: undefined,
-    name: undefined
+    name: undefined,
   }
   return Object.assign({}, state, newState)
 }

@@ -1,10 +1,9 @@
 import React from 'react'
 import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
-import { Layout, Button } from 'antd'
 import DiveLog from '../components/DiveLog'
 
-const Url = "http://localhost:3001/divelogs"
+// const Url = 'http://localhost:3001/divelogs'
 
 const DiveLogContainer = props => {
   const { logs } = props.divelog
@@ -21,14 +20,12 @@ const DiveLogContainer = props => {
       </div>
     )
   } else {
-    return (
-      <p>No log</p>
-    )
+    return <p>No log</p>
   }
 }
 
 const mapStateToProps = state => ({
-  divelog: state.divelog
+  divelog: state.divelog,
 })
 
 const enhance = compose(
@@ -36,7 +33,7 @@ const enhance = compose(
   lifecycle({
     componentWillMount() {
       console.log('DIVELOG CONTAINER')
-    }
+    },
   })
 )
 

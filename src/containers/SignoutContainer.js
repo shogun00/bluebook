@@ -4,25 +4,20 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { requestSignout } from '../actions/user'
 
-const SignoutContainer = () => (
-  <Redirect to='/sign_in' />
-)
+const SignoutContainer = () => <Redirect to="/sign_in" />
 
-const mapStateToProps = state => ({})
+const mapStateToProps = _state => ({})
 
 const mapDispatchToProps = {
-  requestSignout
+  requestSignout,
 }
 
 const enhance = compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentWillMount() {
       this.props.requestSignout()
-    }
+    },
   })
 )
 
