@@ -5,8 +5,8 @@ const config = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.js',
   output: {
-    path: path.resolve(__dirname,'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -14,13 +14,13 @@ const config = {
         test: /\.js/,
         include: path.resolve(__dirname, 'src'),
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        loaders: ['babel-loader'],
       },
       {
         test: /\.css/,
-        loaders: ['style-loader', 'css-loader']
+        loaders: ['style-loader', 'css-loader'],
       },
-    ]
+    ],
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
@@ -28,11 +28,9 @@ const config = {
     port: 3010,
     quiet: false,
     hot: true,
-    inline: true
+    inline: true,
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 }
 
 module.exports = config

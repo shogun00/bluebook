@@ -24,7 +24,7 @@ const Signin = props => {
       <FormItem>
         {getFieldDecorator('password', {
           rules: [{ required: true, message: 'Please input your password!' }],
-        })(<Input placeholder="password" />)}
+        })(<Input type="password" placeholder="password" />)}
       </FormItem>
       <FormItem>
         {getFieldDecorator('remember', {

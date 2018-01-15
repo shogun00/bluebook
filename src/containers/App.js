@@ -9,6 +9,7 @@ import { clear } from '../actions/alert'
 import PrivateRoute from './PrivateRoute'
 import DiveLogContainer from './DiveLogContainer'
 import ProfileContainer from './ProfileContainer'
+import LogCreatorContainer from './LogCreatorContainer'
 import SigninContainer from './SigninContainer'
 import SignoutContainer from './SignoutContainer'
 
@@ -28,6 +29,13 @@ const routes = [
     exact: true,
     label: 'Profile',
     main: ProfileContainer,
+  },
+  {
+    path: '/new',
+    icon: 'form',
+    exact: true,
+    label: 'Create',
+    main: LogCreatorContainer,
   },
 ]
 
@@ -100,6 +108,7 @@ const App = props => {
           <Switch>
             <PrivateRoute exact path="/" component={DiveLogContainer} />
             <PrivateRoute exact path="/profile" component={ProfileContainer} />
+            <PrivateRoute exact path="/new" component={LogCreatorContainer} />
             <PrivateRoute path="/sign_out" component={SignoutContainer} />
             <Route path="/sign_in" component={SigninContainer} />
           </Switch>
@@ -107,7 +116,7 @@ const App = props => {
       </Content>
 
       <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
-        DIVE LOG Created by Ant design
+        DIVE LOG
       </Footer>
     </Layout>
   ) : (
