@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withHandlers } from 'recompose'
+import { compose, withProps, withHandlers } from 'recompose'
 import {
   Form,
   DatePicker,
@@ -27,13 +27,9 @@ const { TextArea } = Input
 
 const rowStyle = { marginBottom: 0 }
 
-const LogCreatorContainer = props => {
-  const { getFieldDecorator } = props.form
+const LogCreatorContainer = ({ getFieldDecorator, handleSubmit }) => {
   return (
-    <form
-      onSubmit={props.handleSubmit}
-      style={{ width: '60%', margin: 'auto' }}
-    >
+    <form onSubmit={handleSubmit} style={{ width: '60%', margin: 'auto' }}>
       <Row style={rowStyle}>
         <FormItem>
           {getFieldDecorator('divePurpose', {
@@ -279,6 +275,9 @@ const handleSubmit = props => e => {
 
 const enhance = compose(
   Form.create(),
+  withProps(({ form }) => ({
+    getFieldDecorator: form.getFieldDecorator,
+  })),
   withHandlers({
     handleSubmit,
   })

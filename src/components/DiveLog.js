@@ -6,7 +6,7 @@ const DiveLog = props => {
     id,
     location,
     spot,
-    dived_at,
+    date,
     weather,
     wind_direction,
     wind_level,
@@ -17,7 +17,7 @@ const DiveLog = props => {
     tank_size,
     tank_category,
     weight,
-    dive_number,
+    dive_count,
     entry_time,
     exit_time,
     dive_time,
@@ -31,7 +31,7 @@ const DiveLog = props => {
   } = props.log
   return (
     <Card
-      title={`Date: ${dived_at} Location: ${location} Total Dive: ${dive_number}`}
+      title={`Date: ${date} Location: ${location} Total Dive: ${dive_count}`}
     >
       <Row>
         <Col span={12}>
