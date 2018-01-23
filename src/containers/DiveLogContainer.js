@@ -1,7 +1,7 @@
 import React from 'react'
 import { compose, lifecycle } from 'recompose'
 import { connect } from 'react-redux'
-import DiveLog from '../components/DiveLog'
+import Divelog from '../components/Divelog'
 import { requestFetchLogs } from '../actions/divelog'
 
 // const Url = 'http://localhost:3001/divelogs'
@@ -11,10 +11,10 @@ const DiveLogContainer = props => {
   if (logs.length > 0) {
     return (
       <div style={{ width: '100%', margin: '0 auto' }}>
-        <ul>
+        <ul style={{ listStyle: 'none' }}>
           {logs.map((log, i) => (
             <li key={i} style={{ padding: '10px' }}>
-              <DiveLog log={log} />
+              <Divelog log={log} />
             </li>
           ))}
         </ul>

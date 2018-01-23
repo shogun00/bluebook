@@ -8,6 +8,7 @@ import { requestFetch } from '../actions/user'
 import { clear } from '../actions/alert'
 import PrivateRoute from './PrivateRoute'
 import DiveLogContainer from './DiveLogContainer'
+import DivelogDetail from '../components/DivelogDetail'
 import ProfileContainer from './ProfileContainer'
 import LogCreatorContainer from './LogCreatorContainer'
 import SigninContainer from './SigninContainer'
@@ -107,6 +108,7 @@ const App = props => {
 
           <Switch>
             <PrivateRoute exact path="/" component={DiveLogContainer} />
+            <PrivateRoute exact path="/:divelog_id" component={DivelogDetail} />
             <PrivateRoute exact path="/profile" component={ProfileContainer} />
             <PrivateRoute exact path="/new" component={LogCreatorContainer} />
             <PrivateRoute path="/sign_out" component={SignoutContainer} />
