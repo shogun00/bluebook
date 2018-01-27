@@ -1,1 +1,3 @@
 export const FETCH_LOGS = 'FETCH_LOGS'
+export const SUCCESS_CREATE_LOG = 'SUCCESS_CREATE_LOG'
+export const FAIL_CREATE_LOG = 'FAIL_CREATE_LOG'

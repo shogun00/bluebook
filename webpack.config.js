@@ -22,6 +22,7 @@ const config = {
       },
     ],
   },
+  devtool: 'source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     host: '0.0.0.0',

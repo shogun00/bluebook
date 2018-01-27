@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { compose, withProps, withHandlers } from 'recompose'
 import {
   Form,
@@ -18,6 +19,7 @@ import {
   Row,
   Col,
 } from 'antd'
+import { requestCreateLog } from '../actions/divelog'
 
 const FormItem = Form.Item
 const RadioButton = Radio.Button
@@ -31,16 +33,32 @@ const LogCreatorContainer = ({ getFieldDecorator, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit} style={{ width: '60%', margin: 'auto' }}>
       <Row style={rowStyle}>
-        <FormItem>
-          {getFieldDecorator('divePurpose', {
-            initialValue: 'fun',
-          })(
-            <RadioGroup>
-              <RadioButton value="fun">Fun Diving</RadioButton>
-              <RadioButton value="free">Free Diving</RadioButton>
-            </RadioGroup>
-          )}
-        </FormItem>
+        <Col span={12}>
+          <FormItem>
+            {getFieldDecorator('divePurpose', {
+              initialValue: 'fun',
+            })(
+              <RadioGroup>
+                <RadioButton value="fun">Fun Diving</RadioButton>
+                <RadioButton value="free">Free Diving</RadioButton>
+              </RadioGroup>
+            )}
+          </FormItem>
+        </Col>
+        <Col span={12}>
+          <FormItem>
+            {getFieldDecorator('diveCount', {
+              rules: [{ required: true, message: 'Please input dive count!' }],
+            })(
+              <InputNumber
+                min={0}
+                step={1}
+                placeholder="dive count"
+                style={{ width: '100%' }}
+              />
+            )}
+          </FormItem>
+        </Col>
       </Row>
       <Row style={rowStyle}>
         <Col span={8}>
@@ -269,11 +287,32 @@ const handleSubmit = props => e => {
   props.form.validateFields((error, values) => {
     if (!error) {
       console.log('Received values of form: ', values)
+      const params = {
+        dive_purpose: values['divePurpose'],
+        dive_count: values['diveCount'],
+        date: values['date'].format('YYYY-MM-DD'),
+        entry_time: values['startTime'].format('HH:mm'),
+        location: values['location'],
+        entry_type: values['diveStyle'],
+        max_depth: values['maxDepth'],
+        duration: values['duration'],
+        note: values['note'],
+        publication: values['publication'],
+      }
+      console.log(params)
+      props.postLog(params)
     }
   })
 }
 
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = dispatch => ({
+  postLog: params => dispatch(requestCreateLog(params)),
+})
+
 const enhance = compose(
+  connect(mapStateToProps, mapDispatchToProps),
   Form.create(),
   withProps(({ form }) => ({
     getFieldDecorator: form.getFieldDecorator,

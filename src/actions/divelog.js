@@ -12,7 +12,29 @@ export const requestFetchLogs = params => dispatch => {
     })
 }
 
+export const requestCreateLog = params => dispatch => {
+  client
+    .post('/api/v1/user/logs', params)
+    .then(response => {
+      dispatch(successCreateLog())
+    })
+    .catch(error => {
+      console.log('Fail create log')
+      console.log(error.message)
+      console.log(error.response)
+      dispatch(failCreateLog)
+    })
+}
+
 const fetchLogs = data => ({
   type: Divelog.FETCH_LOGS,
   payload: { divelogs: data },
+})
+
+const successCreateLog = () => ({
+  type: Divelog.SUCCESS_CREATE_LOG,
+})
+
+const failCreateLog = () => ({
+  type: Divelog.FAIL_CREATE_LOG,
 })
