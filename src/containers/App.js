@@ -111,8 +111,8 @@ const App = props => {
             <PrivateRoute exact path="/profile" component={ProfileContainer} />
             <PrivateRoute exact path="/new" component={LogCreatorContainer} />
             <PrivateRoute path="/sign_out" component={SignoutContainer} />
-            <PrivateRoute exact path="/:divelog_id" component={DivelogDetail} />
             <Route path="/sign_in" component={SigninContainer} />
+            <PrivateRoute exact path="/:divelog_id" component={DivelogDetail} />
           </Switch>
         </div>
       </Content>
