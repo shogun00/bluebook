@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux'
 import client from '../utils/client'
 
 import * as Divelog from '../constants/Divelog'
@@ -17,6 +18,7 @@ export const requestCreateLog = params => dispatch => {
     .post('/api/v1/user/logs', params)
     .then(response => {
       dispatch(successCreateLog())
+      dispatch(push('/'))
     })
     .catch(error => {
       console.log('Fail create log')

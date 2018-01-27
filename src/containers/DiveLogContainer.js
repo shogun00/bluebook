@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import Divelog from '../components/Divelog'
 import { requestFetchLogs } from '../actions/divelog'
 
-// const Url = 'http://localhost:3001/divelogs'
-
 const DiveLogContainer = props => {
   const { logs } = props.divelog
   if (logs.length > 0) {
