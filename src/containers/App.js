@@ -76,9 +76,11 @@ const renderHeadbar = user => {
 const renderAlert = alert => {
   if (alert.messages && alert.messages.length > 0) {
     return (
-      <div style={{ padding: 5 }}>
+      <div>
         {alert.messages.map((message, i) => (
-          <Alert key={i} message={message} type={alert.type} showIcon />
+          <div key={i} style={{ padding: 5 }}>
+            <Alert message={message} type={alert.type} showIcon closable />
+          </div>
         ))}
       </div>
     )

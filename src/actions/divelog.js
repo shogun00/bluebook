@@ -1,5 +1,6 @@
 import { push } from 'react-router-redux'
 import client from '../utils/client'
+import * as alertActions from './alert'
 
 import * as Divelog from '../constants/Divelog'
 
@@ -22,9 +23,8 @@ export const requestCreateLog = params => dispatch => {
     })
     .catch(error => {
       console.log('Fail create log')
-      console.log(error.message)
-      console.log(error.response)
-      dispatch(failCreateLog)
+      const errorMessages = error.response.data
+      dispatch(alertActions.error(errorMessages))
     })
 }
 
@@ -35,8 +35,4 @@ const fetchLogs = data => ({
 
 const successCreateLog = () => ({
   type: Divelog.SUCCESS_CREATE_LOG,
-})
-
-const failCreateLog = () => ({
-  type: Divelog.FAIL_CREATE_LOG,
 })
