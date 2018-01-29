@@ -3,9 +3,10 @@ import { Form, InputNumber } from 'antd'
 
 const FormItem = Form.Item
 
-const DiveCount = ({ getFieldDecorator }) => (
+const DiveCount = ({ getFieldDecorator, nextDiveCount }) => (
   <FormItem>
     {getFieldDecorator('diveCount', {
+      initialValue: nextDiveCount,
       rules: [{ required: true, message: 'Please input dive count!' }],
     })(
       <InputNumber

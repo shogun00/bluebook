@@ -16,14 +16,17 @@ import Publication from './log_forms/Publication'
 
 const rowStyle = { marginBottom: 0 }
 
-const LogCreator = ({ getFieldDecorator, handleSubmit }) => (
+const LogCreator = ({ getFieldDecorator, handleSubmit, nextDiveCount }) => (
   <Form onSubmit={handleSubmit} style={{ width: '60%', margin: 'auto' }}>
     <Row style={rowStyle}>
       <Col span={12}>
         <DivePurpose getFieldDecorator={getFieldDecorator} />
       </Col>
       <Col span={12}>
-        <DiveCount getFieldDecorator={getFieldDecorator} />
+        <DiveCount
+          getFieldDecorator={getFieldDecorator}
+          nextDiveCount={nextDiveCount}
+        />
       </Col>
     </Row>
     <Row style={rowStyle}>
