@@ -11,8 +11,8 @@ const Publication = ({ getFieldDecorator }) => (
       initialValue: 'public',
     })(
       <RadioGroup>
-        <RadioButton value="public">Public</RadioButton>
-        <RadioButton value="private">Private</RadioButton>
+        <RadioButton value="public">公開</RadioButton>
+        <RadioButton value="private">非公開</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

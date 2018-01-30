@@ -11,8 +11,8 @@ const DivePurpose = ({ getFieldDecorator }) => (
       initialValue: 'fun',
     })(
       <RadioGroup>
-        <RadioButton value="fun">Fun Diving</RadioButton>
-        <RadioButton value="free">Free Diving</RadioButton>
+        <RadioButton value="scuba">スクーバダイビング</RadioButton>
+        <RadioButton value="free">フリーダイビング</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

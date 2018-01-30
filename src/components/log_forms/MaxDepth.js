@@ -11,7 +11,7 @@ const MaxDepth = ({ getFieldDecorator }) => (
       <InputNumber
         min={0}
         step={0.1}
-        placeholder="max depth"
+        placeholder="最大深度"
         style={{ width: '90%' }}
       />
     )}

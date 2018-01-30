@@ -12,10 +12,11 @@ const DiveCount = ({ getFieldDecorator, nextDiveCount }) => (
       <InputNumber
         min={0}
         step={1}
-        placeholder="dive count"
-        style={{ width: '100%' }}
+        placeholder="ダイビング本数"
+        style={{ width: '50%' }}
       />
     )}
+    本目
   </FormItem>
 )
 

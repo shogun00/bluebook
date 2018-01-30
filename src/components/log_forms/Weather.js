@@ -11,9 +11,9 @@ const Weather = ({ getFieldDecorator }) => (
       initialValue: 'sunny',
     })(
       <RadioGroup>
-        <RadioButton value="sunny">Sunny</RadioButton>
-        <RadioButton value="cloudy">Cloudy</RadioButton>
-        <RadioButton value="rainy">Rainy</RadioButton>
+        <RadioButton value="sunny">晴れ</RadioButton>
+        <RadioButton value="cloudy">曇り</RadioButton>
+        <RadioButton value="rainy">雨</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

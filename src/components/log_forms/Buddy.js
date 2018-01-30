@@ -6,7 +6,7 @@ const FormItem = Form.Item
 const Buddy = ({ getFieldDecorator }) => (
   <FormItem>
     {getFieldDecorator('buddy')(
-      <Input placeholder="Buddy" style={{ width: '90%' }} />
+      <Input placeholder="バディ" style={{ width: '90%' }} />
     )}
   </FormItem>
 )

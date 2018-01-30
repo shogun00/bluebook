@@ -11,8 +11,8 @@ const EntryType = ({ getFieldDecorator }) => (
       initialValue: 'boat',
     })(
       <RadioGroup>
-        <RadioButton value="boat">Boat</RadioButton>
-        <RadioButton value="beach">Beach</RadioButton>
+        <RadioButton value="boat">ボートエントリー</RadioButton>
+        <RadioButton value="beach">ビーチエントリー</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

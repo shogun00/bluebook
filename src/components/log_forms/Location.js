@@ -7,7 +7,7 @@ const Location = ({ getFieldDecorator }) => (
   <FormItem>
     {getFieldDecorator('location', {
       rules: [{ required: true, message: 'Please input location!' }],
-    })(<Input placeholder="Location" style={{ width: '100%' }} />)}
+    })(<Input placeholder="場所" style={{ width: '100%' }} />)}
   </FormItem>
 )
 

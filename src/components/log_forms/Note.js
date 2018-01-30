@@ -6,7 +6,7 @@ const { TextArea } = Input
 
 const Note = ({ getFieldDecorator }) => (
   <FormItem>
-    {getFieldDecorator('note')(<TextArea rows={4} placeholder="note" />)}
+    {getFieldDecorator('note')(<TextArea rows={4} placeholder="メモ" />)}
   </FormItem>
 )
 

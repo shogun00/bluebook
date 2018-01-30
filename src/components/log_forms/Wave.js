@@ -9,9 +9,9 @@ const Wave = ({ getFieldDecorator }) => (
   <FormItem>
     {getFieldDecorator('wave')(
       <RadioGroup>
-        <RadioButton value="hard">Hard</RadioButton>
-        <RadioButton value="middle">Middle</RadioButton>
-        <RadioButton value="low">Low</RadioButton>
+        <RadioButton value="hard">高波</RadioButton>
+        <RadioButton value="middle">中波</RadioButton>
+        <RadioButton value="low">低波</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

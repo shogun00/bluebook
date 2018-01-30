@@ -6,7 +6,7 @@ const FormItem = Form.Item
 const AirEnding = ({ getFieldDecorator }) => (
   <FormItem>
     {getFieldDecorator('ending')(
-      <InputNumber min={0} placeholder="ending" style={{ width: '80%' }} />
+      <InputNumber min={0} placeholder="最終残圧" style={{ width: '80%' }} />
     )}
     bar
   </FormItem>

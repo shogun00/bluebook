@@ -6,7 +6,7 @@ const FormItem = Form.Item
 const AirStarting = ({ getFieldDecorator }) => (
   <FormItem>
     {getFieldDecorator('starting')(
-      <InputNumber min={0} placeholder="starting" style={{ width: '80%' }} />
+      <InputNumber min={0} placeholder="初期残圧" style={{ width: '80%' }} />
     )}
     bar
   </FormItem>

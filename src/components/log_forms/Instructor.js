@@ -6,7 +6,7 @@ const FormItem = Form.Item
 const Instructor = ({ getFieldDecorator }) => (
   <FormItem>
     {getFieldDecorator('instructor')(
-      <Input placeholder="Instructor name" style={{ width: '90%' }} />
+      <Input placeholder="インストラクター" style={{ width: '90%' }} />
     )}
   </FormItem>
 )

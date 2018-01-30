@@ -9,13 +9,13 @@ const TabPane = Tabs.TabPane
 
 const OptionTabs = ({ getFieldDecorator }) => (
   <Tabs defaultActiveKey="1" type="card">
-    <TabPane tab="AirTunk" key="1">
+    <TabPane tab="エアタンク" key="1">
       <AirTunkPanel getFieldDecorator={getFieldDecorator} />
     </TabPane>
-    <TabPane tab="Gear" key="2">
+    <TabPane tab="機材" key="2">
       <GearsPanel getFieldDecorator={getFieldDecorator} />
     </TabPane>
-    <TabPane tab="Conditions" key="3">
+    <TabPane tab="コンディション" key="3">
       <ConditionsPanel getFieldDecorator={getFieldDecorator} />
     </TabPane>
   </Tabs>

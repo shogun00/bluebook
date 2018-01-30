@@ -11,9 +11,9 @@ const TunkMaterial = ({ getFieldDecorator }) => (
       initialValue: 'steel',
     })(
       <RadioGroup>
-        <RadioButton value="steel">Steel</RadioButton>
-        <RadioButton value="alminium">Alminium</RadioButton>
-        <RadioButton value="another">Another</RadioButton>
+        <RadioButton value="steel">スチール</RadioButton>
+        <RadioButton value="alminium">アルミニウム</RadioButton>
+        <RadioButton value="another">その他</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

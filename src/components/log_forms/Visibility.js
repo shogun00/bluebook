@@ -9,7 +9,7 @@ const Visibility = ({ getFieldDecorator }) => (
       <InputNumber
         min={0}
         step={0.1}
-        placeholder="visibility"
+        placeholder="透明度"
         style={{ width: '90%' }}
       />
     )}
