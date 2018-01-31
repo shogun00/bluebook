@@ -14,6 +14,8 @@ import Instructor from './log_forms/Instructor'
 import Buddy from './log_forms/Buddy'
 import Publication from './log_forms/Publication'
 
+const rowStyle = { marginBottom: 0 }
+
 const LogEditor = ({ getFieldDecorator, handleSubmit, log }) => (
   <Form onSubmit={handleSubmit} style={{ width: '60%', margin: 'auto' }}>
     <Row style={rowStyle}>

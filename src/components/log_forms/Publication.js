@@ -5,10 +5,10 @@ const FormItem = Form.Item
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
-const Publication = ({ getFieldDecorator }) => (
+const Publication = ({ getFieldDecorator, value = null }) => (
   <FormItem>
     {getFieldDecorator('publication', {
-      initialValue: 'public',
+      initialValue: value ? value : 'public',
     })(
       <RadioGroup>
         <RadioButton value="public">公開</RadioButton>

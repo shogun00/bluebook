@@ -16,6 +16,7 @@ const LogCreatorContainer = ({
     nextDiveCount={nextDiveCount}
   />
 )
+
 const handleSubmit = props => e => {
   e.preventDefault()
   props.form.validateFields((error, values) => {

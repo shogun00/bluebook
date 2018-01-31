@@ -5,10 +5,10 @@ const FormItem = Form.Item
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
-const TunkMaterial = ({ getFieldDecorator }) => (
+const TunkMaterial = ({ getFieldDecorator, value = null }) => (
   <FormItem>
     {getFieldDecorator('tunkMaterial', {
-      initialValue: 'steel',
+      initialValue: value ? value : 'steel',
     })(
       <RadioGroup>
         <RadioButton value="steel">スチール</RadioButton>

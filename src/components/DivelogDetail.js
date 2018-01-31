@@ -1,6 +1,7 @@
 import React from 'react'
 import { compose, withProps } from 'recompose'
-import { Card, Row, Col } from 'antd'
+import { Link } from 'react-router-dom'
+import { Card, Row, Col, Button } from 'antd'
 
 const DivelogDetail = ({ log }) => {
   const {
@@ -33,6 +34,9 @@ const DivelogDetail = ({ log }) => {
   return (
     <Card
       title={`Date: ${date} Location: ${location} Total Dive: ${dive_count}`}
+      extra={
+        <Link to={{ pathname: `/${id}/edit`, state: { log: log } }}>Edit</Link>
+      }
     >
       <Row>
         <Col span={12}>

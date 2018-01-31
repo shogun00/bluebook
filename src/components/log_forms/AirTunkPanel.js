@@ -8,22 +8,22 @@ import AirEnding from './AirEnding'
 
 const rowStyle = { marginBottom: 0 }
 
-const AirTunkPanel = ({ getFieldDecorator }) => (
+const AirTunkPanel = ({ getFieldDecorator, value = null }) => (
   <div>
     <Row style={rowStyle}>
       <Col span={12}>
-        <TunkMaterial getFieldDecorator={getFieldDecorator} />
+        <TunkMaterial getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
       <Col span={12}>
-        <Capacity getFieldDecorator={getFieldDecorator} />
+        <Capacity getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
     </Row>
     <Row style={rowStyle}>
       <Col span={8}>
-        <AirStarting getFieldDecorator={getFieldDecorator} />
+        <AirStarting getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
       <Col span={8}>
-        <AirEnding getFieldDecorator={getFieldDecorator} />
+        <AirEnding getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
     </Row>
   </div>
