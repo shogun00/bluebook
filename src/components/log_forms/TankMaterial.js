@@ -5,9 +5,9 @@ const FormItem = Form.Item
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
-const TunkMaterial = ({ getFieldDecorator, value = null }) => (
+const TankMaterial = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('tunkMaterial', {
+    {getFieldDecorator('tankMaterial', {
       initialValue: value ? value : 'steel',
     })(
       <RadioGroup>
@@ -19,4 +19,4 @@ const TunkMaterial = ({ getFieldDecorator, value = null }) => (
   </FormItem>
 )
 
-export default TunkMaterial
+export default TankMaterial

@@ -11,9 +11,9 @@ const Wave = ({ getFieldDecorator, value = null }) => (
       initialValue: value ? value : null,
     })(
       <RadioGroup>
-        <RadioButton value="hard">高波</RadioButton>
+        <RadioButton value="big">高波</RadioButton>
         <RadioButton value="middle">中波</RadioButton>
-        <RadioButton value="low">低波</RadioButton>
+        <RadioButton value="small">低波</RadioButton>
       </RadioGroup>
     )}
   </FormItem>

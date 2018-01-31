@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tabs } from 'antd'
 
-import AirTunkPanel from './AirTunkPanel'
+import AirTankPanel from './AirTankPanel'
 import GearsPanel from './GearsPanel'
 import ConditionsPanel from './ConditionsPanel'
 
@@ -10,7 +10,7 @@ const TabPane = Tabs.TabPane
 const OptionTabs = ({ getFieldDecorator, value = null }) => (
   <Tabs defaultActiveKey="1" type="card">
     <TabPane tab="エアタンク" key="1">
-      <AirTunkPanel getFieldDecorator={getFieldDecorator} value={value} />
+      <AirTankPanel getFieldDecorator={getFieldDecorator} value={value} />
     </TabPane>
     <TabPane tab="機材" key="2">
       <GearsPanel getFieldDecorator={getFieldDecorator} value={value} />
