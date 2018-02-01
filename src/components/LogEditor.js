@@ -71,15 +71,15 @@ const LogEditor = ({ getFieldDecorator, handleSubmit, log }) => (
     </Row>
     <Row style={rowStyle}>
       <div style={{ padding: 5 }}>
-        <OptionTabs getFieldDecorator={getFieldDecorator} />
+        <OptionTabs getFieldDecorator={getFieldDecorator} log={log} />
       </div>
     </Row>
     <Row style={rowStyle}>
       <Col span={12}>
-        <Guide getFieldDecorator={getFieldDecorator} />
+        <Guide getFieldDecorator={getFieldDecorator} value={log.guide} />
       </Col>
       <Col span={12}>
-        <Buddy getFieldDecorator={getFieldDecorator} />
+        <Buddy getFieldDecorator={getFieldDecorator} value={log.buddy} />
       </Col>
     </Row>
     <Row style={rowStyle}>
