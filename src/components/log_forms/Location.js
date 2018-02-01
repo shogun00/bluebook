@@ -3,9 +3,10 @@ import { Form, Input } from 'antd'
 
 const FormItem = Form.Item
 
-const Location = ({ getFieldDecorator }) => (
+const Location = ({ getFieldDecorator, value = null }) => (
   <FormItem>
     {getFieldDecorator('location', {
+      initialValue: value ? value : null,
       rules: [{ required: true, message: 'Please input location!' }],
     })(<Input placeholder="場所" style={{ width: '100%' }} />)}
   </FormItem>

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w",
-    "start": "webpack-dev-server --colors --history-api-fallback",
+    "start": "webpack-dev-server --colors",
     "eslint": "eslint src/"
   },
   "dependencies": {

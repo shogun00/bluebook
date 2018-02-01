@@ -3,11 +3,11 @@ import { Form, InputNumber } from 'antd'
 
 const FormItem = Form.Item
 
-const Capacity = ({ getFieldDecorator }) => (
+const Capacity = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('capacity')(
-      <InputNumber min={0} placeholder="capacity" style={{ width: '90%' }} />
-    )}
+    {getFieldDecorator('capacity', {
+      initialValue: value ? value : null,
+    })(<InputNumber min={0} placeholder="capacity" style={{ width: '90%' }} />)}
     L
   </FormItem>
 )

@@ -3,9 +3,11 @@ import { Form, InputNumber } from 'antd'
 
 const FormItem = Form.Item
 
-const Visibility = ({ getFieldDecorator }) => (
+const Visibility = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('visibility')(
+    {getFieldDecorator('visibility', {
+      initialValue: value ? value : null,
+    })(
       <InputNumber
         min={0}
         step={0.1}

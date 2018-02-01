@@ -3,9 +3,10 @@ import { Form, InputNumber } from 'antd'
 
 const FormItem = Form.Item
 
-const MaxDepth = ({ getFieldDecorator }) => (
+const MaxDepth = ({ getFieldDecorator, value = null }) => (
   <FormItem>
     {getFieldDecorator('maxDepth', {
+      initialValue: value ? value : null,
       rules: [{ required: true, message: 'Please input max depth!' }],
     })(
       <InputNumber

@@ -30,6 +30,9 @@ const config = {
     quiet: false,
     hot: true,
     inline: true,
+    historyApiFallback: {
+      index: '/index.html',
+    },
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
 }

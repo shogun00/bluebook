@@ -4,9 +4,11 @@ import { Form, Input } from 'antd'
 const FormItem = Form.Item
 const { TextArea } = Input
 
-const Note = ({ getFieldDecorator }) => (
+const Note = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('note')(<TextArea rows={4} placeholder="メモ" />)}
+    {getFieldDecorator('note', {
+      initialValue: value ? value : null,
+    })(<TextArea rows={4} placeholder="メモ" />)}
   </FormItem>
 )
 

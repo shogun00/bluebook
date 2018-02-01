@@ -28,6 +28,17 @@ export const requestCreateLog = params => dispatch => {
     })
 }
 
+export const requestUpdateLog = (id, params) => dispatch => {
+  client
+    .put(`/api/v1/user/logs/${id}`, params)
+    .then(() => dispatch(push('/')))
+    .catch(error => {
+      console.log('Fail update log')
+      const errorMessages = error.response.data
+      dispatch(alertActions.error(errorMessages))
+    })
+}
+
 const fetchLogs = data => ({
   type: Divelog.FETCH_LOGS,
   payload: { divelogs: data },

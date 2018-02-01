@@ -7,19 +7,19 @@ import Visibility from './Visibility'
 
 const rowStyle = { marginBottom: 0 }
 
-const ConditionsPanel = ({ getFieldDecorator }) => (
+const ConditionsPanel = ({ getFieldDecorator, value = null }) => (
   <div>
     <Row style={rowStyle}>
       <Col span={8}>
-        <Weather getFieldDecorator={getFieldDecorator} />
+        <Weather getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
       <Col span={8}>
-        <Wave getFieldDecorator={getFieldDecorator} />
+        <Wave getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
     </Row>
     <Row style={rowStyle}>
       <Col span={8}>
-        <Visibility getFieldDecorator={getFieldDecorator} />
+        <Visibility getFieldDecorator={getFieldDecorator} value={value} />
       </Col>
     </Row>
   </div>

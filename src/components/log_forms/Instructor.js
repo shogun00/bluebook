@@ -3,11 +3,11 @@ import { Form, Input } from 'antd'
 
 const FormItem = Form.Item
 
-const Instructor = ({ getFieldDecorator }) => (
+const Instructor = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('instructor')(
-      <Input placeholder="インストラクター" style={{ width: '90%' }} />
-    )}
+    {getFieldDecorator('instructor', {
+      initialValue: value ? value : null,
+    })(<Input placeholder="インストラクター" style={{ width: '90%' }} />)}
   </FormItem>
 )
 

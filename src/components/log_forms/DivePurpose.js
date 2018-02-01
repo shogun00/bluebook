@@ -5,10 +5,10 @@ const FormItem = Form.Item
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
-const DivePurpose = ({ getFieldDecorator }) => (
+const DivePurpose = ({ getFieldDecorator, value = null }) => (
   <FormItem>
     {getFieldDecorator('divePurpose', {
-      initialValue: 'fun',
+      initialValue: value ? value : 'scuba',
     })(
       <RadioGroup>
         <RadioButton value="scuba">スクーバダイビング</RadioButton>
