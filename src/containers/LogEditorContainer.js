@@ -4,6 +4,7 @@ import { compose, withProps, withHandlers } from 'recompose'
 import { Form } from 'antd'
 import { requestUpdateLog } from '../actions/divelog'
 import LogEditor from '../components/LogEditor'
+import { logParams } from '../utils/paramsConverter'
 
 const LogEditorContainer = ({ getFieldDecorator, handleSubmit, log }) => (
   <LogEditor
@@ -19,18 +20,7 @@ const handleSubmit = props => e => {
   props.form.validateFields((error, values) => {
     if (!error) {
       console.log('Received values of form: ', values)
-      const params = {
-        dive_purpose: values['divePurpose'],
-        dive_count: values['diveCount'],
-        date: values['date'].format('YYYY-MM-DD'),
-        entry_time: values['entryTime'].format('HH:mm'),
-        location: values['location'],
-        entry_type: values['entryType'],
-        max_depth: values['maxDepth'],
-        duration: values['duration'],
-        note: values['note'],
-        publication: values['publication'],
-      }
+      const params = logParams(values)
       console.log(params)
       props.updateLog(id, params)
     }
