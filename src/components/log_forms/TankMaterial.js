@@ -12,7 +12,7 @@ const TankMaterial = ({ getFieldDecorator, value = null }) => (
     })(
       <RadioGroup>
         <RadioButton value="steel">スチール</RadioButton>
-        <RadioButton value="alminium">アルミニウム</RadioButton>
+        <RadioButton value="aluminum">アルミニウム</RadioButton>
         <RadioButton value="another">その他</RadioButton>
       </RadioGroup>
     )}
