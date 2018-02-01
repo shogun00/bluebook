@@ -1,16 +1,16 @@
 import React from 'react'
 import { Form, Row, Col, Button } from 'antd'
-import DivePurpose from './log_forms/DivePurpose'
+import DiveStyle from './log_forms/DiveStyle'
 import DiveCount from './log_forms/DiveCount'
 import DiveDate from './log_forms/DiveDate'
 import EntryTime from './log_forms/EntryTime'
 import Location from './log_forms/Location'
-import EntryType from './log_forms/EntryType'
+import EntryStyle from './log_forms/EntryStyle'
 import MaxDepth from './log_forms/MaxDepth'
 import Duration from './log_forms/Duration'
 import Note from './log_forms/Note'
 import OptionTabs from './log_forms/OptionTabs'
-import Instructor from './log_forms/Instructor'
+import Guide from './log_forms/Guide'
 import Buddy from './log_forms/Buddy'
 import Publication from './log_forms/Publication'
 
@@ -20,7 +20,7 @@ const LogCreator = ({ getFieldDecorator, handleSubmit, nextDiveCount }) => (
   <Form onSubmit={handleSubmit} style={{ width: '60%', margin: 'auto' }}>
     <Row style={rowStyle}>
       <Col span={12}>
-        <DivePurpose getFieldDecorator={getFieldDecorator} />
+        <DiveStyle getFieldDecorator={getFieldDecorator} />
       </Col>
       <Col span={12}>
         <DiveCount
@@ -41,7 +41,7 @@ const LogCreator = ({ getFieldDecorator, handleSubmit, nextDiveCount }) => (
       </Col>
     </Row>
     <Row style={rowStyle}>
-      <EntryType getFieldDecorator={getFieldDecorator} />
+      <EntryStyle getFieldDecorator={getFieldDecorator} />
     </Row>
     <Row style={rowStyle}>
       <Col span={12}>
@@ -61,7 +61,7 @@ const LogCreator = ({ getFieldDecorator, handleSubmit, nextDiveCount }) => (
     </Row>
     <Row style={rowStyle}>
       <Col span={12}>
-        <Instructor getFieldDecorator={getFieldDecorator} />
+        <Guide getFieldDecorator={getFieldDecorator} />
       </Col>
       <Col span={12}>
         <Buddy getFieldDecorator={getFieldDecorator} />
