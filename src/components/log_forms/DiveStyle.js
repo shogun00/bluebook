@@ -5,9 +5,9 @@ const FormItem = Form.Item
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
-const DivePurpose = ({ getFieldDecorator, value = null }) => (
+const DiveStyle = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('divePurpose', {
+    {getFieldDecorator('diveStyle', {
       initialValue: value ? value : 'scuba',
     })(
       <RadioGroup>
@@ -18,4 +18,4 @@ const DivePurpose = ({ getFieldDecorator, value = null }) => (
   </FormItem>
 )
 
-export default DivePurpose
+export default DiveStyle

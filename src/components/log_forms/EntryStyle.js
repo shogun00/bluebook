@@ -5,9 +5,9 @@ const FormItem = Form.Item
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
-const EntryType = ({ getFieldDecorator, value = null }) => (
+const EntryStyle = ({ getFieldDecorator, value = null }) => (
   <FormItem>
-    {getFieldDecorator('entryType', {
+    {getFieldDecorator('entryStyle', {
       initialValue: value ? value : 'boat',
     })(
       <RadioGroup>
@@ -18,4 +18,4 @@ const EntryType = ({ getFieldDecorator, value = null }) => (
   </FormItem>
 )
 
-export default EntryType
+export default EntryStyle
