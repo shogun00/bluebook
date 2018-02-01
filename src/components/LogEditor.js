@@ -5,6 +5,7 @@ import DiveCount from './log_forms/DiveCount'
 import DiveDate from './log_forms/DiveDate'
 import EntryTime from './log_forms/EntryTime'
 import Location from './log_forms/Location'
+import Spot from './log_forms/Spot'
 import EntryStyle from './log_forms/EntryStyle'
 import MaxDepth from './log_forms/MaxDepth'
 import Duration from './log_forms/Duration'
@@ -47,10 +48,15 @@ const LogEditor = ({ getFieldDecorator, handleSubmit, log }) => (
       </Col>
     </Row>
     <Row style={rowStyle}>
-      <EntryStyle
-        getFieldDecorator={getFieldDecorator}
-        value={log.entry_type}
-      />
+      <Col span={12}>
+        <EntryStyle
+          getFieldDecorator={getFieldDecorator}
+          value={log.entry_type}
+        />
+      </Col>
+      <Col span={12}>
+        <Spot getFieldDecorator={getFieldDecorator} value={log.spot} />
+      </Col>
     </Row>
     <Row style={rowStyle}>
       <Col span={12}>

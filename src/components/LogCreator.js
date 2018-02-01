@@ -5,6 +5,7 @@ import DiveCount from './log_forms/DiveCount'
 import DiveDate from './log_forms/DiveDate'
 import EntryTime from './log_forms/EntryTime'
 import Location from './log_forms/Location'
+import Spot from './log_forms/Spot'
 import EntryStyle from './log_forms/EntryStyle'
 import MaxDepth from './log_forms/MaxDepth'
 import Duration from './log_forms/Duration'
@@ -41,7 +42,12 @@ const LogCreator = ({ getFieldDecorator, handleSubmit, nextDiveCount }) => (
       </Col>
     </Row>
     <Row style={rowStyle}>
-      <EntryStyle getFieldDecorator={getFieldDecorator} />
+      <Col span={12}>
+        <EntryStyle getFieldDecorator={getFieldDecorator} />
+      </Col>
+      <Col span={12}>
+        <Spot getFieldDecorator={getFieldDecorator} />
+      </Col>
     </Row>
     <Row style={rowStyle}>
       <Col span={12}>

@@ -4,6 +4,7 @@ export const logParams = values => ({
   date: values['date'].format('YYYY-MM-DD'),
   entry_time: values['entryTime'].format('HH:mm'),
   location: values['location'],
+  spot: values['spot'],
   entry_style: values['entryStyle'],
   max_depth: values['maxDepth'],
   duration: values['duration'],
