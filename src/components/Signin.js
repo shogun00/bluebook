@@ -1,21 +1,15 @@
 import React from 'react'
-import { compose, withHandlers } from 'recompose'
-import { Redirect } from 'react-router-dom'
-import { Form, Input, Button, Checkbox } from 'antd'
+import { compose, withProps, withHandlers } from 'recompose'
+import { Redirect, Link } from 'react-router-dom'
+import { Form, Input, Button } from 'antd'
 
 const FormItem = Form.Item
 
-const Signin = props => {
-  const { isSignedIn } = props.user
-  const { getFieldDecorator } = props.form
-
+const Signin = ({ isSignedIn, getFieldDecorator, handleSubmit }) => {
   return isSignedIn ? (
     <Redirect to="/" />
   ) : (
-    <Form
-      onSubmit={props.handleSubmit}
-      style={{ maxWidth: 300, margin: 'auto' }}
-    >
+    <Form onSubmit={handleSubmit} style={{ maxWidth: 300, margin: 'auto' }}>
       <FormItem>
         {getFieldDecorator('email', {
           rules: [{ required: true, message: 'Please input your email!' }],
@@ -45,11 +39,20 @@ const handleSubmit = props => e => {
         email: values['email'],
         password: values['password'],
       }
-      props.requestSignin(params)
+      props.signin(params)
     }
   })
 }
 
-const enhance = compose(withHandlers({ handleSubmit }))
+const enhance = compose(
+  Form.create(),
+  withProps(({ user }) => ({
+    isSignedIn: user.isSignedIn,
+  })),
+  withProps(({ form }) => ({
+    getFieldDecorator: form.getFieldDecorator,
+  })),
+  withHandlers({ handleSubmit })
+)
 
 export default enhance(Signin)
