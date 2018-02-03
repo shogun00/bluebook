@@ -13,6 +13,7 @@ import ProfileContainer from './ProfileContainer'
 import LogCreatorContainer from './LogCreatorContainer'
 import LogEditorContainer from './LogEditorContainer'
 import SigninContainer from './SigninContainer'
+import SignupContainer from './SignupContainer'
 import SignoutContainer from './SignoutContainer'
 
 const { Header, Content, Footer } = Layout
@@ -115,6 +116,7 @@ const App = props => {
             <PrivateRoute exact path="/new" component={LogCreatorContainer} />
             <PrivateRoute path="/sign_out" component={SignoutContainer} />
             <Route path="/sign_in" component={SigninContainer} />
+            <Route path="/sign_up" component={SignupContainer} />
             <PrivateRoute exact path="/:divelog_id" component={DivelogDetail} />
             <PrivateRoute
               exact

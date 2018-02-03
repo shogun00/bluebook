@@ -31,8 +31,22 @@ const signout = state => {
   return Object.assign({}, state, newState)
 }
 
+const signup = (state, action) => {
+  const user = action.data
+  const newState = {
+    isPrepared: true,
+    isSignedIn: true,
+    isFetched: true,
+    id: user.id,
+    name: user.name,
+  }
+  return Object.assign({}, state, newState)
+}
+
 const user = (state = initialState, action) => {
   switch (action.type) {
+    case User.SIGN_UP:
+      return signup(state, action)
     case User.SIGN_IN:
       console.log('LOGED IN')
       return signin(state, action)

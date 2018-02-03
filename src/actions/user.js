@@ -43,6 +43,29 @@ export const requestFetch = () => dispatch => {
   }
 }
 
+export const requestSignup = params => dispatch => {
+  client
+    .post('/auth', params)
+    .then(response => {
+      const { headers, data } = response
+      storeAuth(headers)
+      dispatch(signup(data))
+      const messages = ["Welcome! Let's create your Diving Log!"]
+      dispatch(alertActions.success(messages))
+    })
+    .catch(error => {
+      console.log('fail sign up')
+      console.log(error.response.data.errors.full_messages)
+      const { full_messages } = error.response.data.errors
+      dispatch(alertActions.error(full_messages))
+    })
+}
+
+const signup = data => ({
+  type: User.SIGN_UP,
+  data,
+})
+
 const signin = data => ({
   type: User.SIGN_IN,
   data,
