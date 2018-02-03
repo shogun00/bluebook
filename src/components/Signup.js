@@ -5,11 +5,16 @@ import { Form, Input, Button } from 'antd'
 
 const FormItem = Form.Item
 
-const Signin = ({ isSignedIn, getFieldDecorator, handleSubmit }) => {
+const Signup = ({ isSignedIn, getFieldDecorator, handleSubmit }) => {
   return isSignedIn ? (
     <Redirect to="/" />
   ) : (
     <Form onSubmit={handleSubmit} style={{ maxWidth: 300, margin: 'auto' }}>
+      <FormItem>
+        {getFieldDecorator('name', {
+          rules: [{ required: true, message: 'Please input your name!' }],
+        })(<Input placeholder="Name" />)}
+      </FormItem>
       <FormItem>
         {getFieldDecorator('email', {
           rules: [{ required: true, message: 'Please input your email!' }],
@@ -22,9 +27,9 @@ const Signin = ({ isSignedIn, getFieldDecorator, handleSubmit }) => {
       </FormItem>
       <FormItem>
         <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-          Log in
+          Sign up
         </Button>
-        Or <Link to="/sign_up">register now!</Link>
+        Or <Link to="/sign_in">back</Link>
       </FormItem>
     </Form>
   )
@@ -36,23 +41,25 @@ const handleSubmit = props => e => {
     if (!err) {
       console.log('Received values of form: ', values)
       const params = {
+        name: values['name'],
         email: values['email'],
         password: values['password'],
       }
-      props.signin(params)
+      props.signup(params)
     }
   })
 }
 
 const enhance = compose(
   Form.create(),
-  withProps(({ user }) => ({
-    isSignedIn: user.isSignedIn,
-  })),
   withProps(({ form }) => ({
     getFieldDecorator: form.getFieldDecorator,
   })),
-  withHandlers({ handleSubmit })
+  withProps(({ user }) => ({
+    isSignedIn: user.isSignedIn,
+  })),
+  withHandlers({
+    handleSubmit,
+  })
 )
-
-export default enhance(Signin)
+export default enhance(Signup)
