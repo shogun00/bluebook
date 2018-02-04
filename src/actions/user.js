@@ -10,7 +10,7 @@ export const requestSignin = params => dispatch => {
     .then(response => {
       const { headers, data } = response
       storeAuth(headers)
-      dispatch(signin(data))
+      dispatch(signin(data.data))
     })
     .catch(error => {
       console.log(error.message)

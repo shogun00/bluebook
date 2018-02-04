@@ -17,59 +17,52 @@ import SignupContainer from './SignupContainer'
 import SignoutContainer from './SignoutContainer'
 
 const { Header, Content, Footer } = Layout
+const SubMenu = Menu.SubMenu
 
-const routes = [
+const settingMenus = [
+  // {
+  //   path: '/profile',
+  //   label: 'Profile',
+  // },
   {
-    path: '/',
-    icon: 'home',
-    exact: true,
-    label: 'Home',
-    main: DiveLogContainer,
-  },
-  {
-    path: '/profile',
-    icon: 'user',
-    exact: true,
-    label: 'Profile',
-    main: ProfileContainer,
-  },
-  {
-    path: '/new',
-    icon: 'form',
-    exact: true,
-    label: 'Create',
-    main: LogCreatorContainer,
+    path: '/sign_out',
+    label: 'Sign out',
   },
 ]
 
 const renderHeadbar = user => {
-  const { isSignedIn } = user
+  const { isSignedIn, name } = user
   return (
     <Menu
       theme="light"
       mode="horizontal"
-      defaultSelectedKeys={['0']}
-      style={{ lineHeight: '50px' }}
+      style={{ float: 'right', lineHeight: '50px' }}
     >
-      {isSignedIn &&
-        routes.map((route, index) => (
-          <Menu.Item key={index}>
-            <Link to={route.path}>
-              <Icon type={route.icon} style={{ fontSize: 24 }} />
-              <span className="nav-text" style={{ fontSize: 16 }}>
-                {route.label}
-              </span>
-            </Link>
-          </Menu.Item>
-        ))}
       {isSignedIn && (
         <Menu.Item>
-          <Link to="/sign_out">
+          <Link to="/new">
+            <Icon type="form" style={{ fontSize: 24 }} />
             <span className="nav-text" style={{ fontSize: 16 }}>
-              Sign Out
+              Create Log
             </span>
           </Link>
         </Menu.Item>
+      )}
+      {isSignedIn && (
+        <SubMenu
+          title={
+            <span className="nav-text" style={{ fontSize: 16 }}>
+              <Icon type="user" style={{ fontSize: 24 }} />
+              {name}
+            </span>
+          }
+        >
+          {settingMenus.map((menu, i) => (
+            <Menu.Item key={i}>
+              <Link to={menu.path}>{menu.label}</Link>
+            </Menu.Item>
+          ))}
+        </SubMenu>
       )}
     </Menu>
   )
@@ -89,6 +82,23 @@ const renderAlert = alert => {
   }
 }
 
+const renderRoutes = () => (
+  <Switch>
+    <PrivateRoute exact path="/" component={DiveLogContainer} />
+    <PrivateRoute exact path="/profile" component={ProfileContainer} />
+    <PrivateRoute exact path="/new" component={LogCreatorContainer} />
+    <PrivateRoute path="/sign_out" component={SignoutContainer} />
+    <Route path="/sign_in" component={SigninContainer} />
+    <Route path="/sign_up" component={SignupContainer} />
+    <PrivateRoute exact path="/:divelog_id" component={DivelogDetail} />
+    <PrivateRoute
+      exact
+      path="/:divelog_id/edit"
+      component={LogEditorContainer}
+    />
+  </Switch>
+)
+
 const App = props => {
   const { alert, user } = props
   return user.isPrepared ? (
@@ -97,7 +107,10 @@ const App = props => {
         className="header"
         style={{ height: 50, background: '#fff', padding: '0 120px' }}
       >
-        {renderHeadbar(user)}
+        <Link to="/" style={{ fontSize: 30 }}>
+          BLUEBOOK
+        </Link>
+        <div style={{ float: 'right' }}>{renderHeadbar(user)}</div>
       </Header>
       <Content
         style={{
@@ -109,21 +122,7 @@ const App = props => {
       >
         <div style={{ padding: 10, background: '#fff' }}>
           {renderAlert(alert)}
-
-          <Switch>
-            <PrivateRoute exact path="/" component={DiveLogContainer} />
-            <PrivateRoute exact path="/profile" component={ProfileContainer} />
-            <PrivateRoute exact path="/new" component={LogCreatorContainer} />
-            <PrivateRoute path="/sign_out" component={SignoutContainer} />
-            <Route path="/sign_in" component={SigninContainer} />
-            <Route path="/sign_up" component={SignupContainer} />
-            <PrivateRoute exact path="/:divelog_id" component={DivelogDetail} />
-            <PrivateRoute
-              exact
-              path="/:divelog_id/edit"
-              component={LogEditorContainer}
-            />
-          </Switch>
+          {renderRoutes()}
         </div>
       </Content>
 
