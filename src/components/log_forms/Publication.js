@@ -8,11 +8,11 @@ const RadioGroup = Radio.Group
 const Publication = ({ getFieldDecorator, value = null }) => (
   <FormItem>
     {getFieldDecorator('publication', {
-      initialValue: value ? value : 'open',
+      initialValue: value ? value : 'published',
     })(
       <RadioGroup>
-        <RadioButton value="open">公開</RadioButton>
-        <RadioButton value="close">非公開</RadioButton>
+        <RadioButton value="published">公開</RadioButton>
+        <RadioButton value="unpublished">非公開</RadioButton>
       </RadioGroup>
     )}
   </FormItem>
