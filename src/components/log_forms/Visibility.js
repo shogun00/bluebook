@@ -4,7 +4,7 @@ import { Form, InputNumber } from 'antd'
 const FormItem = Form.Item
 
 const Visibility = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="透明度">
     {getFieldDecorator('visibility', {
       initialValue: value ? value : null,
     })(

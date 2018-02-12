@@ -4,7 +4,7 @@ import { Form, InputNumber } from 'antd'
 const FormItem = Form.Item
 
 const Duration = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="潜水時間">
     {getFieldDecorator('duration', {
       initialValue: value ? value : null,
       rules: [{ required: true, message: 'Please input duration time!' }],

@@ -5,7 +5,7 @@ import { Form, TimePicker } from 'antd'
 const FormItem = Form.Item
 
 const EntryTime = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="エントリー開始">
     {getFieldDecorator('entryTime', {
       initialValue: value ? moment(value) : null,
       rules: [{ required: true, message: 'Please input start time!' }],

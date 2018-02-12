@@ -6,7 +6,7 @@ const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
 const Publication = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="公開">
     {getFieldDecorator('publication', {
       initialValue: value ? value : 'published',
     })(
