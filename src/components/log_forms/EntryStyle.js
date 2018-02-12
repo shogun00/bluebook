@@ -6,9 +6,10 @@ const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
 const EntryStyle = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="エントリー">
     {getFieldDecorator('entryStyle', {
       initialValue: value ? value : 'boat',
+      rules: [{ required: true, message: 'Please input entry style!' }],
     })(
       <RadioGroup>
         <RadioButton value="boat">ボートエントリー</RadioButton>

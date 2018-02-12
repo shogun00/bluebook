@@ -5,7 +5,7 @@ const FormItem = Form.Item
 
 const WaterTemperature = ({ getFieldDecorator, value = null }) => (
   <FormItem label="水温">
-    {getFieldDecorator('WaterTemperature', {
+    {getFieldDecorator('waterTemperature', {
       initialValue: value ? value : null,
     })(<InputNumber placeholder="水温" style={{ width: '80%' }} />)}℃
   </FormItem>

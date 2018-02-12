@@ -6,7 +6,7 @@ const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
 const TankMaterial = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="タンク種類">
     {getFieldDecorator('tankMaterial', {
       initialValue: value ? value : 'steel',
     })(

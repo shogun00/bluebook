@@ -6,7 +6,7 @@ const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
 const Weather = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="天候">
     {getFieldDecorator('weather', {
       initialValue: value ? value : '',
     })(

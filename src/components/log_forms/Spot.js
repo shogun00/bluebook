@@ -4,7 +4,7 @@ import { Form, Input } from 'antd'
 const FormItem = Form.Item
 
 const Spot = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="スポット">
     {getFieldDecorator('spot', {
       initialValue: value ? value : null,
       rules: [{ required: true, message: 'Please input spot!' }],

@@ -4,7 +4,7 @@ import { Form, Input } from 'antd'
 const FormItem = Form.Item
 
 const Guide = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="ガイド">
     {getFieldDecorator('guide', {
       initialValue: value ? value : null,
     })(<Input placeholder="ガイド" style={{ width: '90%' }} />)}

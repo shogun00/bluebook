@@ -6,7 +6,7 @@ const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
 
 const Wave = ({ getFieldDecorator, value = null }) => (
-  <FormItem>
+  <FormItem label="波">
     {getFieldDecorator('wave', {
       initialValue: value ? value : null,
     })(
