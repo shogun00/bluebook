@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import { Card, Row, Col } from 'antd'
 
 const Divelog = ({ log }) => {
-  const { id, date, location, spot, dive_count } = log
+  const { id, date, location, spot } = log
   return (
     <Card
-      title={`Date: ${date} Location: ${location} Dive Count: ${dive_count}`}
+      title={`${date} ${location} ${spot}`}
       extra={<Link to={{ pathname: `/${id}`, state: { log: log } }}>more</Link>}
     />
   )

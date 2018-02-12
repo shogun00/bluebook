@@ -8,14 +8,12 @@ const DiveLogContainer = props => {
   const { logs } = props.divelog
   if (logs.length > 0) {
     return (
-      <div style={{ width: '100%', margin: '0 auto' }}>
-        <ul style={{ listStyle: 'none' }}>
-          {logs.map((log, i) => (
-            <li key={i} style={{ padding: '10px' }}>
-              <Divelog log={log} />
-            </li>
-          ))}
-        </ul>
+      <div className="divelogs">
+        {logs.map((log, i) => (
+          <div key={i} className="log-card">
+            <Divelog log={log} />
+          </div>
+        ))}
       </div>
     )
   } else {

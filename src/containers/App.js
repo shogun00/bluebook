@@ -102,34 +102,36 @@ const renderRoutes = () => (
 const App = props => {
   const { alert, user } = props
   return user.isPrepared ? (
-    <Layout>
-      <Header
-        className="header"
-        style={{ height: 50, background: '#fff', padding: '0 120px' }}
-      >
-        <Link to="/" style={{ fontSize: 30 }}>
-          BLUEBOOK
-        </Link>
-        <div style={{ float: 'right' }}>{renderHeadbar(user)}</div>
-      </Header>
-      <Content
-        style={{
-          background: '#87ceeb',
-          padding: '10px 120px',
-          margin: 0,
-          minHeight: '100%',
-        }}
-      >
-        <div style={{ padding: 10, background: '#fff' }}>
-          {renderAlert(alert)}
-          {renderRoutes()}
-        </div>
-      </Content>
+    <div id="bluebook">
+      <Layout>
+        <Header
+          className="navbar"
+          style={{ height: 50, background: '#fff', padding: '0 120px' }}
+        >
+          <Link to="/" style={{ fontSize: 30, textDecoration: 'none' }}>
+            BLUEBOOK
+          </Link>
+          <div style={{ float: 'right' }}>{renderHeadbar(user)}</div>
+        </Header>
+        <Content
+          style={{
+            background: '#87ceeb',
+            padding: '10px 120px',
+            margin: 0,
+            minHeight: '100%',
+          }}
+        >
+          <div style={{ padding: 10, background: '#fff' }}>
+            {renderAlert(alert)}
+            {renderRoutes()}
+          </div>
+        </Content>
 
-      <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
-        DIVE LOG
-      </Footer>
-    </Layout>
+        <Footer style={{ textAlign: 'center', background: '#87ceeb' }}>
+          DIVE LOG
+        </Footer>
+      </Layout>
+    </div>
   ) : (
     <Spin />
   )
