@@ -12,6 +12,8 @@ import rootReducer from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './containers/App'
 
+import './styles/index.sass'
+
 const history = createHistory()
 
 const middleware = [thunk, routerMiddleware(history)]
